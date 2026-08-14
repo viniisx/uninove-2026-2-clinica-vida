@@ -8,7 +8,7 @@ aplicação completa entregue na Aula 20. O enunciado completo do case está em
 
 ## Identificação
 
-- Nome completo:
-- RA:
-- Turma: (quarta ou quinta)
-- O que espero aprender:
+- Nome completo: Vinicius Reis de Oliveira  
+- RA: 925106266
+- Turma: quinta
+- O que espero aprender: Quero aprender bastante conteudo tanto de back e front e conseguir fazer minha primeira aplicação.
