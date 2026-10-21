@@ -12,3 +12,8 @@ aplicação completa entregue na Aula 20. O enunciado completo do case está em
 - RA: 925106266
 - Turma: quinta
 - O que espero aprender: Quero aprender bastante conteudo tanto de back e front e conseguir fazer minha primeira aplicação.
+
+- Nome completo: Diego Ferreira Gomes dos Santos
+- RA: 925110473
+- Turma: Quinta-feira
+- O que espero aprender: Umpouco mais de front end e back end, aprender sobre criptografias SI em geral.
