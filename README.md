@@ -16,4 +16,4 @@ aplicação completa entregue na Aula 20. O enunciado completo do case está em
 - Nome completo: Diego Ferreira Gomes dos Santos
 - RA: 925110473
 - Turma: Quinta-feira
-- O que espero aprender: Umpouco mais de front end e back end, aprender sobre criptografias SI em geral.
+- O que espero aprender: Um pouco mais de front end e back end, aprender sobre criptografias SI em geral.
