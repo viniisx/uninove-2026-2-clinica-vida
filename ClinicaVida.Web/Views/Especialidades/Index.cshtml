@@ -1,0 +1,34 @@
+@model IEnumerable<ClinicaVida.Web.Models.Especialidade>
+@using System.Collections.Generic
+
+@{
+    ViewData["Title"] = "Especialidades";
+
+    var contagem = ViewBag.ContagemMedicos as Dictionary<int, int>
+        ?? new Dictionary<int, int>();
+}
+
+<h1>Especialidades médicas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Especialidade</th>
+            <th>Descrição</th>
+            <th>Quantidade de médicos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var especialidade in Model)
+        {
+            var quantidade = contagem.TryGetValue(
+                especialidade.Id, out var total) ? total : 0;
+
+            <tr>
+                <td>@especialidade.Nome</td>
+                <td>@especialidade.Descricao</td>
+                <td>@quantidade</td>
+            </tr>
+        }
+    </tbody>
+</table>

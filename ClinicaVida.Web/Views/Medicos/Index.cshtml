@@ -1,0 +1,78 @@
+@model IEnumerable<ClinicaVida.Web.Models.Medico>
+@using System.Linq
+@using ClinicaVida.Web.Models
+
+@{
+    ViewData["Title"] = "Corpo clínico";
+
+    var especialidades =
+        ViewBag.Especialidades as IEnumerable<Especialidade>
+        ?? Enumerable.Empty<Especialidade>();
+
+    int? selecionada = ViewBag.EspecialidadeSelecionada is int id
+        ? id
+        : null;
+}
+
+<h1>Corpo clínico da Clínica Vida+</h1>
+
+<p>Conheça nossos médicos e filtre por especialidade.</p>
+
+<form asp-controller="Medicos" asp-action="Index" method="get">
+    <label for="especialidadeId">Especialidade:</label>
+
+    <select id="especialidadeId" name="especialidadeId">
+        <option value="">Todas as especialidades</option>
+
+        @foreach (var especialidade in especialidades)
+        {
+            if (selecionada == especialidade.Id)
+            {
+                <option value="@especialidade.Id" selected>
+                    @especialidade.Nome
+                </option>
+            }
+            else
+            {
+                <option value="@especialidade.Id">
+                    @especialidade.Nome
+                </option>
+            }
+        }
+    </select>
+
+    <button type="submit">Filtrar</button>
+    <a asp-controller="Medicos" asp-action="Index">Limpar filtro</a>
+</form>
+
+@if (!Model.Any())
+{
+    <p>Nenhum médico encontrado.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CRM</th>
+                <th>Especialidade</th>
+                <th>Detalhes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var medico in Model)
+            {
+                <tr>
+                    <td>@medico.Nome</td>
+                    <td>@medico.Crm</td>
+                    <td>@medico.Especialidade?.Nome</td>
+                    <td>
+                        <a asp-action="Details"
+                           asp-route-id="@medico.Id">Ver detalhes</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
