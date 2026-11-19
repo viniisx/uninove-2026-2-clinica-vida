@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href="assets/css/site.css">
+    <script src="assets/js/home.js" defer></script>
     <title>Clínica Vida+</title>
 </head>
 <body>
@@ -36,14 +37,22 @@
             </p>
         </section>
 
-        <section id="especialidades">
-            <h2>Especialidades</h2>
-            <ul>
-                <li>Cardiologia</li>
-                <li>Pediatria</li>
-                <li>Dermatologia</li>
-            </ul>
-        </section>
+       <section id="especialidades">
+    <h2>Especialidades</h2>
+
+    <label for="busca-especialidade">Buscar especialidade</label>
+    <input
+        type="search"
+        id="busca-especialidade"
+        placeholder="Cardiologia, Pediatria..."
+    >
+
+    <ul class="lista-especialidades">
+        <li>Cardiologia</li>
+        <li>Pediatria</li>
+        <li>Dermatologia</li>
+    </ul>
+</section>
 
         <section id="corpo-clinico">
             <h2>Corpo clínico</h2>

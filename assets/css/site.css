@@ -87,3 +87,16 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+.oculto {
+    display: none;
+}
+
+.aviso {
+    color: #C84B31;
+    font-size: 0.9rem;
+}
+
+.campo-invalido {
+    border-color: #C84B31;
+}
