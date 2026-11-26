@@ -1,15 +1,11 @@
-namespace ClinicaVida.Web.Models
+namespace ClinicaVida.Web.Models;
+
+public class Medico
 {
-    public class Medico
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
+    public string Nome { get; set; } = string.Empty;
+    public string Crm { get; set; } = string.Empty;
 
-        public string Nome { get; set; } = string.Empty;
-
-        public string Crm { get; set; } = string.Empty;
-
-        public int EspecialidadeId { get; set; }
-
-        public Especialidade? Especialidade { get; set; }
-    }
+    public int EspecialidadeId { get; set; }
+    public Especialidade? Especialidade { get; set; }
 }

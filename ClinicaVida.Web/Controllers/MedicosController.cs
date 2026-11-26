@@ -1,61 +1,32 @@
-using System.Linq;
-using ClinicaVida.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using ClinicaVida.Web.Models;
 
-namespace ClinicaVida.Web.Controllers
+namespace ClinicaVida.Web.Controllers;
+
+public class MedicosController : Controller
 {
-    public class MedicosController : Controller
+    public IActionResult Index(int? especialidadeId)
     {
-        public IActionResult Index(int? especialidadeId)
+        var medicos = ClinicaEmMemoria.Medicos.AsEnumerable();
+
+        if (especialidadeId is not null)
         {
-            var consulta = ClinicaEmMemoria.Medicos.AsEnumerable();
-
-            if (especialidadeId.HasValue)
-            {
-                consulta = consulta.Where(m =>
-                    m.EspecialidadeId == especialidadeId.Value);
-            }
-
-            var medicos = consulta
-                .OrderBy(m => m.Nome)
-                .Select(m => new Medico
-                {
-                    Id = m.Id,
-                    Nome = m.Nome,
-                    Crm = m.Crm,
-                    EspecialidadeId = m.EspecialidadeId,
-                    Especialidade = ClinicaEmMemoria.Especialidades
-                        .FirstOrDefault(e => e.Id == m.EspecialidadeId)
-                })
-                .ToList();
-
-            ViewBag.Especialidades = ClinicaEmMemoria.Especialidades;
-            ViewBag.EspecialidadeSelecionada = especialidadeId;
-
-            return View(medicos);
+            medicos = medicos.Where(m => m.EspecialidadeId == especialidadeId);
         }
 
-        public IActionResult Details(int id)
-        {
-            var medicoOriginal = ClinicaEmMemoria.Medicos
-                .FirstOrDefault(m => m.Id == id);
+        ViewBag.Especialidades = ClinicaEmMemoria.Especialidades;
 
-            if (medicoOriginal == null)
-            {
-                return NotFound();
-            }
+        return View(medicos.OrderBy(m => m.Nome).ToList());
+    }
 
-            var medico = new Medico
-            {
-                Id = medicoOriginal.Id,
-                Nome = medicoOriginal.Nome,
-                Crm = medicoOriginal.Crm,
-                EspecialidadeId = medicoOriginal.EspecialidadeId,
-                Especialidade = ClinicaEmMemoria.Especialidades
-                    .FirstOrDefault(e => e.Id == medicoOriginal.EspecialidadeId)
-            };
+    public IActionResult Details(int id)
+    {
+        var medico = ClinicaEmMemoria.Medicos.FirstOrDefault(m => m.Id == id);
+        if (medico is null) return NotFound();
 
-            return View(medico);
-        }
+        medico.Especialidade = ClinicaEmMemoria.Especialidades
+            .FirstOrDefault(e => e.Id == medico.EspecialidadeId);
+
+        return View(medico);
     }
 }
