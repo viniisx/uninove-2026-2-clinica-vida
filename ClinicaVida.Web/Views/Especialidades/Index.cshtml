@@ -1,12 +1,18 @@
+@model IEnumerable<Especialidade>
 
 @{
     ViewData["Title"] = "Especialidades";
+    var contagem = (Dictionary<int, int>)ViewBag.MedicosPorEspecialidade;
 }
 
-<h1>@ViewData["Titulo"]</h1>
+<h1>Especialidades da Clínica Vida+</h1>
 
 <ul>
-    <li><a href="/Especialidades/Details/1?nome=Cardiologia">Cardiologia</a></li>
-    <li><a href="/Especialidades/Details/2?nome=Pediatria">Pediatria</a></li>
-    <li><a href="/Especialidades/Details/3?nome=Dermatologia">Dermatologia</a></li>
+@foreach (var e in Model)
+{
+    <li>
+        <a href="/Medicos?especialidadeId=@e.Id">@e.Nome</a>
+        (@contagem[e.Id] médico(s))
+    </li>
+}
 </ul>
